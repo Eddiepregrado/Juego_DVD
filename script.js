@@ -1,4 +1,4 @@
-document.getElementById("botoncolor").addEventListener("click", CambioColor());
+document.getElementById("botoncolor").addEventListener("click", CambioColor);
 
 let color;
 function CambioColor(){
