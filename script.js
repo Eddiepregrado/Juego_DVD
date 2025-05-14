@@ -1,12 +1,11 @@
-let color = false;
+
+let colores = ["blue", "red", "green", "yellow", "purple", "orange"];
+let indiceColor = 0;
 
 document.getElementById("botoncolor").addEventListener("click", CambioColor);
 
+
 function CambioColor() {
-    if (color) {
-        document.body.style.backgroundColor = "blue";
-    } else {
-        document.body.style.backgroundColor = "red";
-    }
-    color = !color;
+    document.body.style.backgroundColor = colores[indiceColor];
+    indiceColor = (indiceColor + 1) % colores.length;
 }
