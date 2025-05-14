@@ -1,6 +1,4 @@
-#botoncolor{
-    text-align: center;
-}
+
 #titulo{
     text-align: center;
 }
@@ -9,4 +7,8 @@
 }
 #parrafo_Dos{
     text-align: center;
+}
+#botoncolor{
+    text-align: center;
+    margin-top: 20px; 
 }
