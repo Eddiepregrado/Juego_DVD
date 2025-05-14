@@ -8,5 +8,5 @@ function CambioColor() {
     } else {
         document.body.style.backgroundColor = "red";
     }
-    color = !color; // Alterna el valor
+    color = !color;
 }
