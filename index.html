@@ -3,19 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity Web Player | Jueguito de pagina</title>
+    <title>Unity WebGL Player | Universal</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="Style.css">
-    <script src="script.js" defer></script>
-   
   </head>
   <body>
-       <h1>Este es un ejemplo</h1>
-    <p id="botoncolor">esto nos permite crear parrafos</p>
-    <img src="Assets/imagen.jpg" alt="erased">
-    <button id="botoncolor">soy un boton</button>
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
       <div id="unity-loading-bar">
@@ -26,13 +18,19 @@
       </div>
       <div id="unity-warning"> </div>
       <div id="unity-footer">
-        <div id="unity-logo-title-footer"></div>
+        <div id="unity-webgl-logo"></div>
         <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">Jueguito de pagina</div>
+        <div id="unity-build-title">Universal</div>
       </div>
     </div>
     <script>
+
+      var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
+      var loadingBar = document.querySelector("#unity-loading-bar");
+      var progressBarFull = document.querySelector("#unity-progress-bar-full");
+      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+      var warningBanner = document.querySelector("#unity-warning");
 
       // Shows a temporary message banner/ribbon for a few seconds, or
       // a permanent error message on top of the canvas if type=='error'.
@@ -41,7 +39,6 @@
       // way that non-critical warnings and error messages are presented to the
       // user.
       function unityShowBanner(msg, type) {
-        var warningBanner = document.querySelector("#unity-warning");
         function updateBannerVisibility() {
           warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
         }
@@ -62,13 +59,12 @@
       var buildUrl = "Build";
       var loaderUrl = buildUrl + "/Juego_DVD.loader.js";
       var config = {
-        arguments: [],
-        dataUrl: buildUrl + "/Juego_DVD.data",
-        frameworkUrl: buildUrl + "/Juego_DVD.framework.js",
-        codeUrl: buildUrl + "/Juego_DVD.wasm",
+        dataUrl: buildUrl + "/Juego_DVD.data.br",
+        frameworkUrl: buildUrl + "/Juego_DVD.framework.js.br",
+        codeUrl: buildUrl + "/Juego_DVD.wasm.br",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
-        productName: "Jueguito de pagina",
+        productName: "Universal",
         productVersion: "0.1.0",
         showBanner: unityShowBanner,
       };
@@ -96,7 +92,7 @@
         meta.name = 'viewport';
         meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
         document.getElementsByTagName('head')[0].appendChild(meta);
-        document.querySelector("#unity-container").className = "unity-mobile";
+        container.className = "unity-mobile";
         canvas.className = "unity-mobile";
 
         // To lower canvas resolution on mobile devices to gain some
@@ -106,23 +102,23 @@
 
       } else {
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+
         canvas.style.width = "960px";
         canvas.style.height = "600px";
       }
 
-      document.querySelector("#unity-loading-bar").style.display = "block";
+      loadingBar.style.display = "block";
 
       var script = document.createElement("script");
       script.src = loaderUrl;
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
-          document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
+          progressBarFull.style.width = 100 * progress + "%";
               }).then((unityInstance) => {
-                document.querySelector("#unity-loading-bar").style.display = "none";
-                document.querySelector("#unity-fullscreen-button").onclick = () => {
+                loadingBar.style.display = "none";
+                fullscreenButton.onclick = () => {
                   unityInstance.SetFullscreen(1);
                 };
-
               }).catch((message) => {
                 alert(message);
               });
