@@ -9,6 +9,9 @@
     text-align: center;
 }
 #botoncolor{
-    text-align: right;
-    margin-top: 20px; 
+    text-align: center;
+}
+
+#unity-container {
+    margin-top: 100px;
 }
